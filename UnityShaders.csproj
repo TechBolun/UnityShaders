@@ -234,6 +234,7 @@
     <None Include="Assets\Shaders\DiffuseVertexLevel.shader" />
     <None Include="Assets\Shaders\FalseColor.shader" />
     <None Include="Assets\Shaders\ForwardRendering.shader" />
+    <None Include="Assets\Shaders\Fresnel.shader" />
     <None Include="Assets\Shaders\HalfLambert.shader" />
     <None Include="Assets\Shaders\MaskTextureWorldSpace.shader" />
     <None Include="Assets\Shaders\NormalMapTangentSpace.shader" />
