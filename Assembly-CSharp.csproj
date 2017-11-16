@@ -62,10 +62,13 @@
      <None Include="Assets\Shaders\RampTexture.shader" />
      <None Include="Assets\Shaders\SpecularVertexLevel.shader" />
      <None Include="Assets\Shaders\AlphaTest.shader" />
+     <None Include="Assets\Shaders\Mirror.shader" />
      <None Include="Assets\Shaders\DiffuseVertexLevel.shader" />
      <None Include="Assets\Shaders\AlphaBlendZWrite.shader" />
+     <None Include="Assets\Shaders\BumpedDiffuse.shader" />
      <None Include="Assets\Shaders\ForwardRendering.shader" />
      <None Include="Assets\Shaders\BlinnPhongUseBuidInFucntion.shader" />
+     <None Include="Assets\Shaders\BumpedSpecular.shader" />
      <None Include="Assets\Shaders\MaskTextureWorldSpace.shader" />
      <None Include="Assets\Shaders\AlphaBlendBothSid.shader" />
      <None Include="Assets\Shaders\FalseColor.shader" />
