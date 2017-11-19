@@ -41,9 +41,9 @@
 			struct v2f {
 				float4 pos : SV_POSITION;
 				float4 uv : TEXCOORD0;
-				float4 TtoW0 : TEXCOORD1;  
-                float4 TtoW1 : TEXCOORD2;  
-                float4 TtoW2 : TEXCOORD3; 
+				float4 TtoWx : TEXCOORD1;  
+                float4 TtoWy : TEXCOORD2;  
+                float4 TtoWz : TEXCOORD3; 
 				SHADOW_COORDS(4)
 			};
 			
@@ -59,9 +59,9 @@
                 fixed3 worldTangent = UnityObjectToWorldDir(v.tangent.xyz);  
                 fixed3 worldBinormal = cross(worldNormal, worldTangent) * v.tangent.w; 
                 
-                o.TtoW0 = float4(worldTangent.x, worldBinormal.x, worldNormal.x, worldPos.x);  
-                o.TtoW1 = float4(worldTangent.y, worldBinormal.y, worldNormal.y, worldPos.y);  
-                o.TtoW2 = float4(worldTangent.z, worldBinormal.z, worldNormal.z, worldPos.z);  
+                o.TtoWx = float4(worldTangent.x, worldBinormal.x, worldNormal.x, worldPos.x);  
+                o.TtoWy = float4(worldTangent.y, worldBinormal.y, worldNormal.y, worldPos.y);  
+                o.TtoWz = float4(worldTangent.z, worldBinormal.z, worldNormal.z, worldPos.z);  
   				
   				TRANSFER_SHADOW(o);
 			 	
@@ -69,20 +69,20 @@
 			}
 			
 			fixed4 frag(v2f i) : SV_Target {
-				float3 worldPos = float3(i.TtoW0.w, i.TtoW1.w, i.TtoW2.w);
-				fixed3 lightDir = normalize(UnityWorldSpaceLightDir(worldPos));
+				float3 worldPos = float3(i.TtoWx.w, i.TtoWy.w, i.TtoWz.w);
+				fixed3 worldLightDir = normalize(UnityWorldSpaceLightDir(worldPos));
 				fixed3 viewDir = normalize(UnityWorldSpaceViewDir(worldPos));
 				
 				fixed3 bump = UnpackNormal(tex2D(_BumpMap, i.uv.zw));
-				bump = normalize(half3(dot(i.TtoW0.xyz, bump), dot(i.TtoW1.xyz, bump), dot(i.TtoW2.xyz, bump)));
+				bump = normalize(half3(dot(i.TtoWx.xyz, bump), dot(i.TtoWy.xyz, bump), dot(i.TtoWz.xyz, bump)));
 
 				fixed3 albedo = tex2D(_MainTex, i.uv.xy).rgb * _Color.rgb;
 				
 				fixed3 ambient = UNITY_LIGHTMODEL_AMBIENT.xyz * albedo;
 				
-			 	fixed3 diffuse = _LightColor0.rgb * albedo * max(0, dot(bump, lightDir));
+			 	fixed3 diffuse = _LightColor0.rgb * albedo * max(0, dot(bump, worldLightDir));
 			 	
-			 	fixed3 halfDir = normalize(lightDir + viewDir);
+			 	fixed3 halfDir = normalize(worldLightDir + viewDir);
 			 	fixed3 specular = _LightColor0.rgb * _Specular.rgb * pow(max(0, dot(bump, halfDir)), _Gloss);
 			
 				UNITY_LIGHT_ATTENUATION(atten, i, worldPos);
@@ -101,7 +101,7 @@
 			CGPROGRAM
 			
 			#pragma multi_compile_fwdadd
-			// Use the line below to add shadows for point and spot lights
+			// add shadow for point and spot lights
 //			#pragma multi_compile_fwdadd_fullshadows
 			
 			#pragma vertex vert
@@ -129,9 +129,9 @@
 			struct v2f {
 				float4 pos : SV_POSITION;
 				float4 uv : TEXCOORD0;
-				float4 TtoW0 : TEXCOORD1;  
-                float4 TtoW1 : TEXCOORD2;  
-                float4 TtoW2 : TEXCOORD3;
+				float4 TtoWx : TEXCOORD1;
+                float4 TtoWy : TEXCOORD2;
+                float4 TtoWz : TEXCOORD3;
 				SHADOW_COORDS(4)
 			};
 			
@@ -147,9 +147,9 @@
                 fixed3 worldTangent = UnityObjectToWorldDir(v.tangent.xyz);  
                 fixed3 worldBinormal = cross(worldNormal, worldTangent) * v.tangent.w; 
 	
-  				o.TtoW0 = float4(worldTangent.x, worldBinormal.x, worldNormal.x, worldPos.x);
-			  	o.TtoW1 = float4(worldTangent.y, worldBinormal.y, worldNormal.y, worldPos.y);
-			  	o.TtoW2 = float4(worldTangent.z, worldBinormal.z, worldNormal.z, worldPos.z);  
+  				o.TtoWx = float4(worldTangent.x, worldBinormal.x, worldNormal.x, worldPos.x);
+			  	o.TtoWy = float4(worldTangent.y, worldBinormal.y, worldNormal.y, worldPos.y);
+			  	o.TtoWz = float4(worldTangent.z, worldBinormal.z, worldNormal.z, worldPos.z);  
 			 	
 			 	TRANSFER_SHADOW(o);
 			 	
@@ -157,18 +157,18 @@
 			}
 			
 			fixed4 frag(v2f i) : SV_Target {
-				float3 worldPos = float3(i.TtoW0.w, i.TtoW1.w, i.TtoW2.w);
-				fixed3 lightDir = normalize(UnityWorldSpaceLightDir(worldPos));
+				float3 worldPos = float3(i.TtoWx.w, i.TtoWy.w, i.TtoWz.w);
+				fixed3 worldLightDir = normalize(UnityWorldSpaceLightDir(worldPos));
 				fixed3 viewDir = normalize(UnityWorldSpaceViewDir(worldPos));
 				
 				fixed3 bump = UnpackNormal(tex2D(_BumpMap, i.uv.zw));
-				bump = normalize(half3(dot(i.TtoW0.xyz, bump), dot(i.TtoW1.xyz, bump), dot(i.TtoW2.xyz, bump)));
+				bump = normalize(half3(dot(i.TtoWx.xyz, bump), dot(i.TtoWy.xyz, bump), dot(i.TtoWz.xyz, bump)));
 				
 				fixed3 albedo = tex2D(_MainTex, i.uv.xy).rgb * _Color.rgb;
 				
-			 	fixed3 diffuse = _LightColor0.rgb * albedo * max(0, dot(bump, lightDir));
+			 	fixed3 diffuse = _LightColor0.rgb * albedo * max(0, dot(bump, worldLightDir));
 			 	
-			 	fixed3 halfDir = normalize(lightDir + viewDir);
+			 	fixed3 halfDir = normalize(worldLightDir + viewDir);
 			 	fixed3 specular = _LightColor0.rgb * _Specular.rgb * pow(max(0, dot(bump, halfDir)), _Gloss);
 			
 				UNITY_LIGHT_ATTENUATION(atten, i, worldPos);
