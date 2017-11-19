@@ -55,6 +55,7 @@
      <None Include="Assets\Shaders\SpecularPixelLevel.shader" />
      <None Include="Assets\Shaders\NormalMapWorldSpace.shader" />
      <None Include="Assets\Shaders\Refraction.shader" />
+     <None Include="Assets\Shaders\BumpedSpecularRef.shader" />
      <None Include="Assets\Shaders\HalfLambert.shader" />
      <None Include="Assets\Shaders\AlphaTestBothSide.shader" />
      <None Include="Assets\Shaders\Bolun-NormalMapTangentSpace.shader" />
