@@ -51,6 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\RenderCubemapWizard.cs" />
      <Compile Include="Assets\Scripts\test.cs" />
      <None Include="Assets\Shaders\SpecularPixelLevel.shader" />
      <None Include="Assets\Shaders\NormalMapWorldSpace.shader" />
@@ -70,6 +71,7 @@
      <None Include="Assets\Shaders\ForwardRendering.shader" />
      <None Include="Assets\Shaders\BlinnPhongUseBuidInFucntion.shader" />
      <None Include="Assets\Shaders\BumpedSpecular.shader" />
+     <None Include="Assets\Shaders\GlassRefraction.shader" />
      <None Include="Assets\Shaders\MaskTextureWorldSpace.shader" />
      <None Include="Assets\Shaders\AlphaBlendBothSid.shader" />
      <None Include="Assets\Shaders\FalseColor.shader" />
