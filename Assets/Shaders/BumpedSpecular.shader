@@ -35,7 +35,7 @@
 				float4 vertex : POSITION;
 				float3 normal : NORMAL;
 				float4 tangent : TANGENT;
-				float4 texcoord : TEXCOORD0;
+				float2 texcoord : TEXCOORD0;
 			};
 			
 			struct v2f {
@@ -123,7 +123,7 @@
 				float4 vertex : POSITION;
 				float3 normal : NORMAL;
 				float4 tangent : TANGENT;
-				float4 texcoord : TEXCOORD0;
+				float2 texcoord : TEXCOORD0;
 			};
 			
 			struct v2f {
