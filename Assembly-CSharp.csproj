@@ -51,15 +51,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\helper\SetPropertyAttribute.cs" />
+     <Compile Include="Assets\Scripts\helper\SetPropertyExample.cs" />
+     <Compile Include="Assets\Scripts\ProceduralTextureGeneration.cs" />
      <Compile Include="Assets\Scripts\RenderCubemapWizard.cs" />
      <Compile Include="Assets\Scripts\test.cs" />
      <None Include="Assets\Shaders\SpecularPixelLevel.shader" />
+     <None Include="Assets\Shaders\SingleTexture.shader" />
      <None Include="Assets\Shaders\NormalMapWorldSpace.shader" />
      <None Include="Assets\Shaders\Refraction.shader" />
      <None Include="Assets\Shaders\BumpedSpecularRef.shader" />
      <None Include="Assets\Shaders\HalfLambert.shader" />
      <None Include="Assets\Shaders\AlphaTestBothSide.shader" />
-     <None Include="Assets\Shaders\Bolun-NormalMapTangentSpace.shader" />
      <None Include="Assets\Shaders\DiffusePixelLevel.shader" />
      <None Include="Assets\Shaders\RampTexture.shader" />
      <None Include="Assets\Shaders\SpecularVertexLevel.shader" />
@@ -70,6 +73,7 @@
      <None Include="Assets\Shaders\BumpedDiffuse.shader" />
      <None Include="Assets\Shaders\ForwardRendering.shader" />
      <None Include="Assets\Shaders\BlinnPhongUseBuidInFucntion.shader" />
+     <None Include="Assets\Shaders\AlphaTestWithShadow.shader" />
      <None Include="Assets\Shaders\BumpedSpecular.shader" />
      <None Include="Assets\Shaders\GlassRefraction.shader" />
      <None Include="Assets\Shaders\MaskTextureWorldSpace.shader" />
